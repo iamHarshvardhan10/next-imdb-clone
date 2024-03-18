@@ -7,7 +7,7 @@ import React from 'react'
 const Home = async ({ searchParams }) => {
   const genre = searchParams.genre || 'fetchTrending'
   const res = await fetch(
-    `https://api.themoviedb.org/3${genre === 'fetchTopRated' ? '/movie/top_rated' : '/trending/all/week'}?api_key=${API_KEY}&langauge=en-US&page=1`
+    `https://api.themoviedb.org/3${genre === 'fetchTopRated' ? '/movie/top_rated' : '/trending/all/week'}?api_key=${API_KEY}&langauge=en-US&page=1`, { next: { revalidate: 60 } }
   )
   const data = await res.json()
   if (data.scucess = false) {
